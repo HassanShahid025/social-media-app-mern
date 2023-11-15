@@ -1,17 +1,35 @@
 import { Container, AppBar,Typography, Grow, Grid} from '@mui/material'
+import {useDispatch} from 'react-redux'
+import {getPosts} from './actions/posts'
 import memories from './images/memories.png'
 import Posts from './components/Posts/Posts'
 import Form from './components/Form/Form'
-import useStyles from './styles'
+import { useEffect } from 'react'
 
 function App() {
-  const classes = useStyles()
+  
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getPosts())
+  },[dispatch])
 
   return (
     <Container maxWidth='lg'>
-      <AppBar className={classes.appBar} position='static' color='inherit'>
-        <Typography className={classes.heading} variant='h2' align='center'>Memories</Typography>
-        <img className={classes.image} src={memories} alt='memories' height="60"/>
+      <AppBar  position='static' color='inherit' sx={{
+         borderRadius: 15,
+         margin: '30px 0',
+         display: 'flex',
+         flexDirection: 'row',
+         justifyContent: 'center',
+         alignItems: 'center',
+      }}>
+        <Typography  variant='h2' align='center' sx={{
+           color: 'rgba(0,183,255, 1)',
+        }}>Memories</Typography>
+        <img  src={memories} alt='memories' height="60"  style={{
+          marginLeft:'15px'
+        }}/>
       </AppBar>
       <Grow in>
         <Container>
