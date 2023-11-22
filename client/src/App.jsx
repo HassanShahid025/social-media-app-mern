@@ -6,6 +6,7 @@ import Posts from './components/Posts/Posts'
 import Form from './components/Form/Form'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import appStyles from './styles'
 
 function App() {
   const [currentId, setCurrentId]  = useState(null)
@@ -14,7 +15,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getPosts())
-  },[dispatch])
+  },[currentId,dispatch])
 
   return (
     <Container maxWidth='lg'>
@@ -35,7 +36,9 @@ function App() {
       </AppBar>
       <Grow in>
         <Container>
-          <Grid container justify='space-between' alignItems='stretch' spacing={3}>
+          <Grid container 
+          sx={appStyles.mainContainer}
+          justify='space-between' alignItems='stretch' spacing={3}>
             <Grid item xs={12} sm={7}>
               <Posts setCurrentId={setCurrentId}/>
             </Grid>
